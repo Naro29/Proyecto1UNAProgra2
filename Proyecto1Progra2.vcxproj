@@ -151,6 +151,7 @@
       <FileType>CppHeader</FileType>
     </ClInclude>
     <ClInclude Include="Plaza.h" />
+    <ClInclude Include="RegistroContratos.h" />
     <ClInclude Include="RegistroSalarios.h" />
     <ClInclude Include="ServicioProfesional.h" />
     <ClInclude Include="Tiempos.h" />
@@ -165,6 +166,7 @@
     <ClCompile Include="PlanillaCortoPlazo.cpp" />
     <ClCompile Include="PlanillaIndef.cpp" />
     <ClCompile Include="Plaza.cpp" />
+    <ClCompile Include="RegistroContratos.cpp" />
     <ClCompile Include="RegistroSalario.cpp" />
     <ClCompile Include="ServicioProfesional.cpp" />
     <ClCompile Include="Tiempos.cpp" />
