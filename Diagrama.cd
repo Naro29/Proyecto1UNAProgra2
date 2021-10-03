@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Access">
+  <Class Name="CalculoSalarioYVac&lt;T&gt;">
+    <Position X="12.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAACIAABAACAAAEAAAABAAAAAQAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CalculoSalarioYVac.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Contrato">
+    <Position X="8" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Protected" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AgABAQBgAAQAghCEAECgBIgAAAAkQAAAAAAAAEABDAA=</HashCode>
+      <FileName>Contrato.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Empleado">
+    <Position X="14.5" Y="3.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Private" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAgAAAhAAgQgIASAAAAAxAAIAABAAJCAAAIMAgAEgAI=</HashCode>
+      <FileName>Empleado.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lista&lt;T&gt;">
+    <Position X="16.25" Y="3.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Private" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAQAAIAAMAIAAIAgAgABAAAAAAAQAAABCAgAAAAIAA=</HashCode>
+      <FileName>Lista.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Nodo&lt;T&gt;">
+    <Position X="12.75" Y="7" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Private" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>BAAAAAAEQAAAAAAAAAQEAAAACAAAAAAAAABAQAAAAAA=</HashCode>
+      <FileName>Nodo.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlanillaCortoPlazo">
+    <Position X="8" Y="6.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Public" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>QgAAAoBgBAQCAACEAECgBAgAgQAEQAAARAAAAAAACAA=</HashCode>
+      <FileName>PlanillaCortoPlazo.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlanillaIndef">
+    <Position X="10" Y="6.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Public" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>QkABAoBhBAQCAiCkAECgBAgAgAAEQAAARAAAAAAACAA=</HashCode>
+      <FileName>PlanillaIndef.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Plaza">
+    <Position X="19.75" Y="3.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Private" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAABEAAAAAABgACIAAEABAAAgAAAAAAAEAABAAAACAA=</HashCode>
+      <FileName>Plaza.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ServicioProfesional">
+    <Position X="6" Y="6.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Public" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AgAAAABgAAQAAACAAkCgBCgAAAAEQAAAAAAAAAAACAA=</HashCode>
+      <FileName>ServicioProfesional.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tiempos">
+    <Position X="18" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgBBAAAgAAAAQAAAAAIEAAAAQCAAAA4AAABAAAAAA=</HashCode>
+      <FileName>Tiempos.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RegistroSalarios">
+    <Position X="16.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>RegistroSalarios.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
