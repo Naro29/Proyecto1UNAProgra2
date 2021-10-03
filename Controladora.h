@@ -9,6 +9,7 @@
 #include"Nodo.h"
 #include"Tiempos.h"
 #include"Vista.h"
+#include "RegistroContratos.h"
 
 class Controladora {
 public:

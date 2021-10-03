@@ -70,6 +70,7 @@ void Controladora::control1(Empresa*emps){
 void Controladora::control2(Lista<Contrato>* LC, Lista<Plaza>* LP,Tiempos*Tiempitos,Empresa* emps){
 	std::system("cls");
 	RegistroSalarios RS;
+	RegistroContratos RC;
 	Empleado* emp;
 	string cedula,nombre,apellido1,apellido2,fechaNac,direccion;
 	int edad;
@@ -128,6 +129,8 @@ void Controladora::control2_1(Lista<Contrato>*LC, bool quincenal, Empleado*emp,s
 	ServPro = new ServicioProfesional(0, quincenal, emp, fechaIngreso, " ", emps);
 	NC = new Nodo<Contrato>(ServPro, NULL);
 	LC->addNodo(NC);
+	RegistroContratos RC;
+	RC.registrarContrato(0,quincenal,emp,fechaIngreso," ",emps);
 }
 void Controladora::control2_2(Lista<Contrato>* LC, bool quincenal, Empleado* emp, string fechaIngreso, Empresa* emps){
 	Nodo < Contrato >* NC = NULL;
@@ -140,6 +143,8 @@ void Controladora::control2_2(Lista<Contrato>* LC, bool quincenal, Empleado* emp
 	PlanillaCP = new PlanillaCortoPlazo(0, quincenal, emp, fechaIngreso, " ", 0.09, 0.02, 0.20, salEsc, ahorroNa, emps);//Su ID se aplica automaticamente en addNodo()
 	NC = new Nodo<Contrato>(PlanillaCP, NULL);
 	LC->addNodo(NC);
+	RegistroContratos RCC;
+	RCC.registrarContratoCortoPlazo(0,quincenal, emp, fechaIngreso, " ", 0.09, 0.02, 0.20, salEsc, ahorroNa, emps);
 }
 void Controladora::control2_3(Lista<Contrato>* LC, Lista<Plaza>* LP, bool quincenal, Empleado* emp, string fechaIngreso, Empresa* emps){
 	Nodo < Contrato >* NC = NULL;
@@ -157,7 +162,8 @@ void Controladora::control2_3(Lista<Contrato>* LC, Lista<Plaza>* LP, bool quince
 	PlanillaI = new PlanillaIndef(0, quincenal, plazita, emp, fechaIngreso, " ", 0.09, 0.02, 0.20, salEsc, ahorroNa, emps);//Su ID se aplica automaticamente en addNodo()
 	NC = new Nodo<Contrato>(PlanillaI, NULL);
 	LC->addNodo(NC);
-
+	RegistroContratos RCI;
+	RCI.registrarContratoIndef(0, quincenal, plazita, emp, fechaIngreso, " ", 0.09, 0.02, 0.20, salEsc, ahorroNa, emps);
 }
 void Controladora::control3(Lista<Contrato>*LC){
 	std::system("cls");
