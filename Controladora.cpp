@@ -5,8 +5,6 @@ Controladora::~Controladora() {}
 void Controladora::control0() {
 	string empNom, empDir, empTel;
 	int opc;
-	int tM;
-	int tQ;
 	Tiempos* Tiempitos;
 	Lista < Contrato >* LC = new Lista<Contrato>();
 	Lista < Plaza >* LP = new Lista<Plaza>();
@@ -70,10 +68,8 @@ void Controladora::control1(Empresa*emps){
 void Controladora::control2(Lista<Contrato>* LC, Lista<Plaza>* LP,Tiempos*Tiempitos,Empresa* emps){
 	std::system("cls");
 	RegistroSalarios RS;
-	RegistroContratos RC;
 	Empleado* emp;
 	string cedula,nombre,apellido1,apellido2,fechaNac,direccion;
-	int edad;
 	string telefono;
 	bool quincenal;
 	string fechaIngreso,fechaCesantia;
@@ -85,11 +81,7 @@ void Controladora::control2(Lista<Contrato>* LC, Lista<Plaza>* LP,Tiempos*Tiempi
 	cin >> quincenal;
 	cout << "Ingrese la fecha de ingreso(DD/MM/AAAA): ";
 	cin >> fechaIngreso;
-	cout << "Tipo de contrato: " << endl
-		<< "1-Servicio profesional" << endl
-		<< "2-Planilla de corto plazo" << endl
-		<< "3- Planilla de tiempo indefinido" << endl;
-	cin >> opc;
+	opc = Vista::menuOpc2();
 	switch (opc) {
 	case 1:
 		control2_1(LC, quincenal,emp,fechaIngreso,emps);
@@ -119,10 +111,8 @@ void Controladora::control2_2(Lista<Contrato>* LC, bool quincenal, Empleado* emp
 	Nodo < Contrato >* NC = NULL;
 	PlanillaCortoPlazo* PlanillaCP;
 	double salEsc, ahorroNa;
-	cout << "Ingrese el monto que desea ahorrar: ";
-	cin >> ahorroNa;
-	cout << "Ingrese el salario escolar: ";
-	cin >> salEsc;
+	ahorroNa=Vista::opc2_2_1();
+	salEsc=Vista::opc2_2_2();
 	PlanillaCP = new PlanillaCortoPlazo(0, quincenal, emp, fechaIngreso, " ", 0.09, 0.02, 0.20, salEsc, ahorroNa, emps);//Su ID se aplica automaticamente en addNodo()
 	NC = new Nodo<Contrato>(PlanillaCP, NULL);
 	LC->addNodo(NC);
@@ -135,12 +125,9 @@ void Controladora::control2_3(Lista<Contrato>* LC, Lista<Plaza>* LP, bool quince
 	PlanillaIndef* PlanillaI;
 	double salEsc, ahorroNa;
 	int codP;
-	cout << "Ingrese el monto que desea ahorrar: ";
-	cin >> ahorroNa;
-	cout << "Ingrese el salario escolar: ";
-	cin >> salEsc;
-	cout << "Ingrese el codigo de plaza: ";
-	cin >> codP;
+	ahorroNa = Vista::opc2_2_1();
+	salEsc = Vista::opc2_2_2();
+	codP=Vista::opc2_2_3();
 	plazita = LP->getNodo(codP)->getItem();
 	PlanillaI = new PlanillaIndef(0, quincenal, plazita, emp, fechaIngreso, " ", 0.09, 0.02, 0.20, salEsc, ahorroNa, emps);//Su ID se aplica automaticamente en addNodo()
 	NC = new Nodo<Contrato>(PlanillaI, NULL);
@@ -151,33 +138,8 @@ void Controladora::control2_3(Lista<Contrato>* LC, Lista<Plaza>* LP, bool quince
 void Controladora::control3(Lista<Contrato>*LC){
 	std::system("cls");
 	Empleado* emp;
-	string cedula;
-	string nombre;
-	string apellido1;
-	string apellido2;
-	string fechaNac;
-	string direccion;
-	int edad;
-	string telefono;
-
-	cout << "Ingrese la cedula del empleado: ";
-	cin >> cedula;
-	cout << "Ingrese el nombre: ";
-	cin >> nombre;
-	cout << "Ingrese el primer apellido: ";
-	cin >> apellido1;
-	cout << "Ingrese el segundo apellido: ";
-	cin >> apellido2;
-	cout << "Ingrese la fecha de nacimiento(DD/MM/AAAA): ";
-	cin >> fechaNac;
-	cout << "Ingrese el codigo postal de donde vive: ";
-	cin >> direccion;
-	cout << "Ingrese la edad: ";
-	cin >> edad;
-	cout << "Ingrese el numero de telefono: ";
-	cin >> telefono;
-	emp = new Empleado(cedula, nombre, apellido1, apellido2, fechaNac, direccion, edad, telefono);
-	LC->setNodoByCedula(emp, cedula);
+	emp = Vista::crearEmpleado();
+	LC->setNodoByCedula(emp, emp->getCedula());
 }
 void Controladora::control4(Lista<Contrato>*LC){
 	cout << LC->toStringEmpleados();
@@ -186,37 +148,16 @@ void Controladora::control4(Lista<Contrato>*LC){
 void Controladora::control5(){
 
 }
-void Controladora::control6(Lista<Contrato>*LC,Lista<Plaza>*LP,Tiempos*Tiempitos,Empresa*emps){
-	Contrato* contratito;
-	PlanillaIndef* PlanillaI;
-	Plaza* plazita;
-	int IDPlaza;
-	double salEsc;
-	double ahorroNa;
+void Controladora::control6(Lista<Contrato>* LC, Lista<Plaza>* LP, Tiempos* Tiempitos, Empresa* emps) {
 	while (LC->empMay3Mes(Tiempitos) != NULL) {
-		contratito = LC->empMay3Mes(Tiempitos);
-		cout << "Contrato a actualizar: " << endl;
-		cout << contratito->toString();
-		cout << "Ingrese el monto que desea ahorrar: ";
-		cin >> ahorroNa;
-		cout << "Ingrese el salario escolar: ";
-		cin >> salEsc;
-		cout << "Ingrese el codigo de plaza: ";
-		cin >> IDPlaza;
-		plazita = LP->getNodo(IDPlaza)->getItem();
-		PlanillaI = new PlanillaIndef(contratito->getID(), contratito->getQuincenal(), plazita, contratito->getEmpleado(), contratito->getFechaIngreso(), " ", 0.09, 0.02, 0.20, salEsc, ahorroNa, emps);
-		LC->setNodoByID(PlanillaI);
+		Vista::opc6(LC, LP, Tiempitos, emps);
 	}
 }
 void Controladora::control7(Lista<Plaza>*LP){
 	system("CLS");
 	Nodo < Plaza >* NP = NULL;
 	int opc;
-	cout << "1 - Mostrar plazas." << endl
-		<< "2 - Agregar plaza." << endl
-		<< "3 - Editar plaza." << endl
-		<< "4 - Eliminar plaza por ID." << endl;
-	cin >> opc;
+	opc=Vista::menuOpc7();
 	switch (opc) {
 	case 1:
 		control7_1(LP);
@@ -241,74 +182,39 @@ void Controladora::control7_1(Lista<Plaza>* LP){
 void Controladora::control7_2(Lista<Plaza>* LP){
 	system("CLS");
 	Plaza* plazita;
-	Nodo < Plaza >* NP = NULL;
-	double salBas;
-	int cod;
-	string desc;
-	cout << "Digite la descripcion de la plaza:";
-	cin >> desc;
-	cout << "Digite el codigo de la plaza: ";
-	cin >> cod;
-	cout << "Digite el salario base de la plaza: ";
-	cin >> salBas;
-	plazita = new Plaza(salBas, cod, desc);
+	Nodo < Plaza >* NP;
+	plazita = Vista::crearPlaza();
 	NP = new Nodo<Plaza>(plazita, NULL);
 	LP->addNodo(NP);
 }
 void Controladora::control7_3(Lista<Plaza>* LP){
 	system("CLS");
 	Plaza* plazita;
-	int cod;
-	double salBas;
-	string desc;
-	cout << "Digite el codigo de la plaza a editar: ";
-	cin >> cod;
-	cout << "Digite la descripcion de la plaza:";
-	cin >> desc;
-	cout << "Digite el salario base de la plaza: ";
-	cin >> salBas;
-	plazita = new Plaza(salBas, cod, desc);
+	plazita = Vista::crearPlaza();
 	LP->setNodoByID(plazita);
 }
 void Controladora::control7_4(Lista<Plaza>* LP){
 	int cod;
-	cout << "Digite el codigo de la plaza a eliminar: ";
-	cin >> cod;
+	cod=Vista::opc7_4();
 	LP->Borrar(cod);
 }
 void Controladora::control8(Lista<Contrato>*LC,Tiempos*Tiempitos){
-	if (Tiempitos->getFechaQuin() == Tiempitos->getFechaAct(2)) {
-		cout << "Hoy es pago de quincena, se mostraran los empleados que tengan el pago por quincena: " << endl;
-		cout << LC->toStringSalarios(Tiempitos);
-	}
-	else if (Tiempitos->getFechaFMes() == Tiempitos->getFechaAct(2)) {
-		cout << "Hoy es pago de fin de mes, se mostraran los empleados que tengan el pago por fin de mes: " << endl;
-		cout << LC->toStringSalarios(Tiempitos);
-	}
-	else {
-		cout << "Hoy no es pago de quincena ni de fin de mes." << endl;
-		cout << "No se procedera a hacer ningun pago." << endl;
-	}
-
+	Vista::opc8(LC, Tiempitos);
 	system("pause");
 }
 void Controladora::control9(){
 
 }
 void Controladora::control10(Tiempos*Tiempitos){
-	int tM, tQ;
 	std::system("cls");
-	cout << "Dia de pago quincenal: " << endl;
-	cin >> tQ;
-	cout << "Dia de pago mensual: " << endl;
-	cin >> tM;
-	Tiempitos = new Tiempos(tQ, tM);
+	Tiempitos = Vista::generarTiempos();
 }
 void Controladora::control12(Lista<Plaza>*LP,Lista<Contrato>*LC,Tiempos*Tiempitos, Empresa* emps){
 	std::system("cls");
 	Nodo < Contrato >* NC = NULL;
 	Nodo < Plaza >* NP = NULL;
 	RegistroSalarios RS;
+	RegistroContratos RC;
 	ServicioProfesional* ServPro;
 	PlanillaCortoPlazo* PlanillaCP;
 	PlanillaIndef* PlanillaI;
@@ -346,10 +252,18 @@ void Controladora::control12(Lista<Plaza>*LP,Lista<Contrato>*LC,Tiempos*Tiempito
 	PlanillaI = new PlanillaIndef(0, true, plazita, emp, "03/01/2018", " ", 0.09, 0.02, 0.20, 0, 15000, emps);
 	NC = new Nodo<Contrato>(PlanillaI, NULL);
 	LC->addNodo(NC);
-	RS.registrarSalario("101110111", true, Tiempitos->getFechaAct(0), Tiempitos->getFechaAct(1), Tiempitos->getFechaAct(2), 0, 0, 0);
+	RS.registrarSalario("101110111", true, Tiempitos->getFechaAct(0), Tiempitos->getFechaAct(1)-1, Tiempitos->getFechaAct(2)-1, 0, 0, 0);
+	RC.registrarContratoIndef(0, true, plazita, emp, "03/01/2018", " ", 0.09, 0.02, 0.20, 0, 15000, emps);
 	emp = new Empleado("104210111", "Matraco", "Codos", "Sucios", "07/03/1998", "40201", 23, "234567");
 	PlanillaCP = new PlanillaCortoPlazo(1, true, emp, "26/09/2020", " ", 0.09, 0.02, 0.20, 0, 15000, emps);
 	NC = new Nodo<Contrato>(PlanillaCP, NULL);
 	LC->addNodo(NC);
-	RS.registrarSalario("104210111", true, Tiempitos->getFechaAct(0), Tiempitos->getFechaAct(1), Tiempitos->getFechaAct(2), 0, 0, 0);
+	RS.registrarSalario("104210111", true, Tiempitos->getFechaAct(0), Tiempitos->getFechaAct(1)-1, Tiempitos->getFechaAct(2), 0, 0, 0);
+	RC.registrarContratoCortoPlazo(0, true, emp, "03/01/2018", " ", 0.09, 0.02, 0.20, 0, 15000, emps);
+	emp = new Empleado("104210112", "Carlos", "Corlas", "Colrac", "07/03/1997", "40201", 24, "345678");
+	ServPro = new ServicioProfesional(1, true, emp, "26/09/2020", " ", emps);
+	NC = new Nodo<Contrato>(ServPro, NULL);
+	LC->addNodo(NC);
+	RS.registrarSalario("104210112", true, Tiempitos->getFechaAct(0), Tiempitos->getFechaAct(1) - 1, Tiempitos->getFechaAct(2), 0, 0, 0);
+	RC.registrarContratoCortoPlazo(0, true, emp, "03/01/2018", " ", 0.09, 0.02, 0.20, 0, 15000, emps);
 }
